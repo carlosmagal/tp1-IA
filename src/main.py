@@ -1,13 +1,16 @@
-from solver import Solver
 from utils.utils import read_input
+from solver import Solver
+
+import sys
+sys.path.append('methods')
 
 
 def main():
 
     str = input()
-    algorithm, user_input, print_flag = read_input(str)
+    method, initial_state, should_print = read_input(str)
 
-    solver = Solver(algorithm, user_input, print_flag)
+    solver = Solver(method, initial_state, should_print)
     solver.run()
 
 

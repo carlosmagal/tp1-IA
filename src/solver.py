@@ -1,4 +1,8 @@
 from methods.bfs import solve_bfs
+from methods.ids import solve_ids
+from methods.ucs import solve_ucs
+
+from methods.commons import print_solution
 
 
 class Solver:
@@ -8,13 +12,24 @@ class Solver:
         self.should_print = should_print
 
     def run(self):
+        solution = self.get_solution()
+
+        if solution:
+            print("Número de passos: ", len(solution))
+            if self.should_print:
+                print_solution(solution, self.input)
+
+        else:
+            print("Nenhuma solução encontrada.")
+
+    def get_solution(self):
         match self.method:
             case "B":
-                solve_bfs(self.input, self.should_print)
+                return solve_bfs(self.input)
             case "I":
-                print('1')
+                return solve_ids(self.input)
             case "U":
-                print()
+                return solve_ucs(self.input)
             case "A":
                 print()
             case "G":
