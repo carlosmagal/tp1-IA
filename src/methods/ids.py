@@ -1,4 +1,4 @@
-from commons import get_new_state, available_moves, GOAL_STATE, print_solution
+from commons import get_new_state, available_moves, GOAL_STATE
 
 
 def depth_limited_search(initial_state, depth_limit):

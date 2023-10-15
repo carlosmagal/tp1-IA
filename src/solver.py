@@ -1,6 +1,12 @@
+import sys
+sys.path.append('methods')
+sys.path.append('utils')
+
 from methods.bfs import solve_bfs
 from methods.ids import solve_ids
 from methods.ucs import solve_ucs
+from methods.a_star import solve_a_star
+from methods.gbfs import solve_gbfs
 
 from methods.commons import print_solution
 
@@ -31,8 +37,8 @@ class Solver:
             case "U":
                 return solve_ucs(self.input)
             case "A":
-                print()
+                return solve_a_star(self.input)
             case "G":
-                print()
+                return solve_gbfs(self.input)
             case "H":
                 print()

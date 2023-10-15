@@ -1,5 +1,5 @@
 from collections import deque
-from commons import get_new_state, available_moves, GOAL_STATE, print_solution
+from commons import get_new_state, available_moves, GOAL_STATE
 import sys
 sys.path.append('../')
 

@@ -3,6 +3,7 @@ from solver import Solver
 
 import sys
 sys.path.append('methods')
+sys.path.append('utils')
 
 
 def main():

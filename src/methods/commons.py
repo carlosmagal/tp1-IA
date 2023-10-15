@@ -33,6 +33,7 @@ def get_new_state(state, move):
 
     return new_state
 
+
 # estado objetivo
 GOAL_STATE = [1, 2, 3, 4, 5, 6, 7, 8, 0]
 
@@ -52,3 +53,40 @@ def print_solution(solution_path, initial_state):
         current_state = get_new_state(current_state, move)
 
         print_puzzle(current_state)
+
+
+# Heurísticas
+# 0- Número de Peças Fora do Lugar
+# 1- Manhattam distance
+HEURISTIC_TYPE = 1
+
+
+def heuristics(state):
+
+    match HEURISTIC_TYPE:
+        case 0:
+
+            sum = 0
+
+            for i in range(1, 9):
+                if i != state[i - 1]:
+                    sum += 1
+            else:
+                if state[-1] == 0:
+                    sum += 1
+
+            return sum
+
+            # return sum(1 for i, j in zip(state, GOAL_STATE) if i != j)
+        case 1:
+            distance = 0
+
+            for i in range(9):
+                if state[i] != 0:
+                    current_row, current_col = i // 3, i % 3
+                    goal_idx = GOAL_STATE.index(state[i])
+                    goal_row, goal_col = goal_idx // 3, goal_idx % 3
+                    distance += abs(current_row - goal_row) + \
+                        abs(current_col - goal_col)
+
+            return distance
