@@ -1,4 +1,5 @@
 import sys
+import time
 sys.path.append('methods')
 sys.path.append('utils')
 
@@ -7,8 +8,9 @@ from methods.ids import solve_ids
 from methods.ucs import solve_ucs
 from methods.a_star import solve_a_star
 from methods.gbfs import solve_gbfs
-
+from methods.hc import solve_hill_climbing
 from methods.commons import print_solution
+
 
 
 class Solver:
@@ -18,7 +20,13 @@ class Solver:
         self.should_print = should_print
 
     def run(self):
+        # begin = time.time()
         solution = self.get_solution()
+        # end = time.time()
+        
+        # print("Tempo decorrido: {:.4f}".format(end - begin).replace(".",","))
+        if self.method == 'H':
+            return
 
         if solution:
             print("Número de passos: ", len(solution))
@@ -29,16 +37,15 @@ class Solver:
             print("Nenhuma solução encontrada.")
 
     def get_solution(self):
-        match self.method:
-            case "B":
-                return solve_bfs(self.input)
-            case "I":
-                return solve_ids(self.input)
-            case "U":
-                return solve_ucs(self.input)
-            case "A":
-                return solve_a_star(self.input)
-            case "G":
-                return solve_gbfs(self.input)
-            case "H":
-                print()
+        if self.method == "B":
+            return solve_bfs(self.input)
+        if self.method == "I":
+            return solve_ids(self.input)
+        if self.method == "U":
+            return solve_ucs(self.input)
+        if self.method == "A":
+            return solve_a_star(self.input)
+        if self.method == "G":
+            return solve_gbfs(self.input)
+        if self.method == "H":
+            return solve_hill_climbing(self.input, self.should_print)
