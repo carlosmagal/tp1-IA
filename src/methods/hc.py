@@ -29,15 +29,15 @@ def hill_climbing(initial_state, max_iterations=10000):
           return heuristics(n)
         
         # ordenando pela heuristica
-        y = sorted(new_states, key=gg,reverse=True)
+        sorted_states = sorted(new_states, key=gg,reverse=True)
         
-        for u in y:
-          n_HHH = heuristics(u)
+        for s_state in sorted_states:
+          new_heuristic = heuristics(s_state)
           
-          if n_HHH < current_heuristic:
+          if new_heuristic < current_heuristic:
                 
-              current_state = u
-              current_heuristic = n_HHH
+              current_state = s_state
+              current_heuristic = new_heuristic
               explored_states.append(current_state.copy())
               steps += 1
               
